@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./calculator.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <link href="https://fonts.cdnfonts.com/css/calculator" rel="stylesheet">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="canvas">
+        <div class="calculator">
+            <textarea class="screen" disabled>
+                
+            </textarea>
+            <div class="buttons">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>+</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>-</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>*</button>
+                <button>0</button>
+                <button>.</button>
+                <button>/</button>
+                <button>=</button>
+                <button><i class="bi bi-arrow-clockwise"></i></button>
+                <button><i class="bi bi-arrow-left-circle"></i></button>
+                <button><i class="bi bi-info-circle"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll("button");
+        const btnCount = document.querySelector(".buttons").childElementCount;
+        const sCreen = document.querySelector(".screen");
+        let myArray = [];
+        let myFunction = "";
+        sCreen.value = "";
+        toTal = 0;
+        for (button of buttons){
+            button.addEventListener("click", function(){
+                for(let i = 0; i < btnCount; i++){
+                    if(this == buttons[i]){
+                        try{
+                            if (this.innerHTML == "="){
+                                const expression = myArray.join(""); // expression will be "9+9"
+                                toTal = eval(expression); // total will be 18
+                                sCreen.value = toTal;
+                            }
+                            else if (this.innerHTML == "-"){
+                                sCreen.value += this.innerHTML;
+                                myArray.push(this.innerHTML);
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == "+"){
+                                sCreen.value += this.innerHTML;
+                                myArray.push(this.innerHTML);
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == "/"){
+                                sCreen.value += this.innerHTML;
+                                myArray.push(this.innerHTML);
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == "*"){
+                                sCreen.value += this.innerHTML;
+                                myArray.push(this.innerHTML);
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == '<i class="bi bi-arrow-clockwise"></i>'){
+                                sCreen.value ="";
+                                myArray = [];
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == '<i class="bi bi-arrow-left-circle"></i>'){
+                                myArray.pop();
+                                sCreen.value = myArray.join("");
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == '<i class="bi bi-info-circle"></i>'){
+                                sCreen.value ="Developed by Jeffrey Lonzanida using Vanilla Js, HTML5, and CCS3";
+                                myArray = [];
+                                console.log(myArray);
+                            }
+                            else if (this.innerHTML == "."){
+                                sCreen.value += this.innerHTML;
+                                myArray.push(this.innerHTML);
+                                console.log(myArray);
+                            }
+                            else{
+                                sCreen.value += this.innerHTML;
+                                myArray.push(parseFloat(this.innerHTML));
+                                console.log(myArray);
+                            }
+                        }
+                        catch(error){
+                            sCreen.value = error;
+                            myArray = [];
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
