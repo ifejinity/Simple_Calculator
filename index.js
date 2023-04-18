@@ -2,6 +2,7 @@ const buttons = document.querySelectorAll("button");
 const btnCount = document.querySelector(".buttons").childElementCount;
 const sCreen = document.querySelector(".screen");
 let myArray = [];
+let screenState = 0;
 let myFunction = "";
 sCreen.value = "";
 toTal = 0;
@@ -11,29 +12,25 @@ for (button of buttons){
             if(this == buttons[i]){
                 try{
                     if (this.innerHTML == "="){
-                        const expression = myArray.join(""); // expression will be "9+9"
-                        toTal = eval(expression); // total will be 18
+                        const expression = myArray.join("");
+                        toTal = eval(expression);
+                        myArray = [];
+                        myArray.push(toTal);
                         sCreen.value = toTal;
-                    }
-                    else if (this.innerHTML == "-"){
-                        sCreen.value += this.innerHTML;
-                        myArray.push(this.innerHTML);
                         console.log(myArray);
                     }
-                    else if (this.innerHTML == "+"){
-                        sCreen.value += this.innerHTML;
-                        myArray.push(this.innerHTML);
-                        console.log(myArray);
-                    }
-                    else if (this.innerHTML == "/"){
-                        sCreen.value += this.innerHTML;
-                        myArray.push(this.innerHTML);
-                        console.log(myArray);
-                    }
-                    else if (this.innerHTML == "*"){
-                        sCreen.value += this.innerHTML;
-                        myArray.push(this.innerHTML);
-                        console.log(myArray);
+                    else if (this.innerHTML == "-" || this.innerHTML == "+" || this.innerHTML == "*" || this.innerHTML == "/" || this.innerHTML == "." ){
+                        if(screenState == 1){
+                            screenState = 0;
+                            sCreen.value = this.innerHTML;
+                            myArray.push(this.innerHTML);
+                            console.log(myArray);
+                        }
+                        else{
+                            sCreen.value += this.innerHTML;
+                            myArray.push(this.innerHTML);
+                            console.log(myArray);
+                        }
                     }
                     else if (this.innerHTML == '<i class="bi bi-arrow-clockwise"></i>'){
                         sCreen.value ="";
@@ -46,22 +43,27 @@ for (button of buttons){
                         console.log(myArray);
                     }
                     else if (this.innerHTML == '<i class="bi bi-info-circle"></i>'){
+                        screenState = 1;
                         sCreen.value ="Developed by Jeffrey Lonzanida using Vanilla Js, HTML5, and CCS3";
                         myArray = [];
                         console.log(myArray);
                     }
-                    else if (this.innerHTML == "."){
-                        sCreen.value += this.innerHTML;
-                        myArray.push(this.innerHTML);
-                        console.log(myArray);
-                    }
                     else{
-                        sCreen.value += this.innerHTML;
-                        myArray.push(parseFloat(this.innerHTML));
-                        console.log(myArray);
+                        if(screenState == 1){
+                            screenState = 0;
+                            sCreen.value = this.innerHTML;
+                            myArray.push(parseFloat(this.innerHTML));
+                            console.log(myArray);
+                        }
+                        else{
+                            sCreen.value += this.innerHTML;
+                            myArray.push(parseFloat(this.innerHTML));
+                            console.log(myArray);
+                        }
                     }
                 }
                 catch(error){
+                    screenState = 1;
                     sCreen.value = error;
                     myArray = [];
                 }
