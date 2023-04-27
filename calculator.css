@@ -1,6 +1,7 @@
-@import url("https://fonts.cdnfonts.com/css/calculator");
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
 :root {
   --calculator: "Calculator", sans-serif;
+  --silkcreen: "Silkscreen", cursive;
 }
 
 * {
@@ -33,18 +34,53 @@
   grid-template-columns: 1fr;
 }
 .canvas .calculator .screen {
-  display: flex;
-  flex-wrap: wrap;
-  border: 2px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   height: 100px;
-  padding: 10px;
   border-radius: 10px;
-  background-color: #000000;
-  color: #16FF00;
-  font-size: 1.3rem;
-  font-weight: bold;
+  padding: 10px;
+  background-color: rgb(88, 100, 84);
+  overflow: hidden;
+}
+.canvas .calculator .screen .expression {
+  font-family: var(--silkcreen);
+  grid-area: 1/1/2/3;
   resize: none;
-  font-family: var(--calculator);
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  font-size: 1rem;
+  color: #c5c5c5;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-bottom: 1px solid;
+}
+.canvas .calculator .screen .signs {
+  font-family: var(--silkcreen);
+  grid-area: 2/1;
+  resize: none;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  font-size: 1.3rem;
+  color: #c5c5c5;
+  display: flex;
+  align-items: center;
+}
+.canvas .calculator .screen .result {
+  font-family: var(--silkcreen);
+  grid-area: 2/2;
+  resize: none;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  font-size: 1rem;
+  color: #c5c5c5;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
 .canvas .calculator .buttons {
   height: 100%;
@@ -53,7 +89,7 @@
   gap: 5px;
 }
 .canvas .calculator .buttons button {
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding: 10px;
   cursor: pointer;
   -webkit-appearance: button;
@@ -72,7 +108,7 @@
   margin: 0;
   outline: none;
   overflow: visible;
-  padding: 13px 19px;
+  padding: 10px 10px;
   text-align: center;
   text-transform: uppercase;
   touch-action: manipulation;
