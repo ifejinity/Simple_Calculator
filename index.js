@@ -69,6 +69,7 @@ for (button of buttons){
                     }
                     else if (this.innerHTML == '<i class="bi bi-arrow-left-circle"></i>'){
                         if(myArray.length == 1){
+                            expressionState = 0;
                             reSult.innerHTML = "";
                             siGn.innerHTML = "";
                             myArray.pop();
